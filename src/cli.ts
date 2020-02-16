@@ -4,7 +4,7 @@ import process from "process";
 import loadjson from "./加载JSON.js";
 import { start } from "./index.js";
 import { parseargs } from "./parse-args.js";
-import IMAGECONFIG from './IMAGECONFIG.js';
+import IMAGECONFIG from "./IMAGECONFIG.js";
 const argsobj = parseargs(process.argv.slice(2));
 const { input, output } = argsobj;
 
@@ -13,7 +13,7 @@ const jsonurl = new URL("../image-config.json", filenameurl);
 const maxpixels = Number(argsobj["maxpixels"]);
 
 if (input && output) {
-    loadjson(jsonurl).then((config:IMAGECONFIG) => {
+    loadjson(jsonurl).then((config: IMAGECONFIG) => {
         if (maxpixels) {
             config.maxpixels = maxpixels;
         }
