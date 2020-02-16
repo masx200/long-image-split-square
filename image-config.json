@@ -1,0 +1,7 @@
+{
+    "input": "D:/baidupandownload/图片输入/",
+    "inputextentions": ["jpg", "png", "jpeg", "bmp"],
+    "output": "D:/baidupandownload/暴力切割图片/",
+    "outputextention": "webp",
+    "maxpixels": 6000000
+}
