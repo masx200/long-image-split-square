@@ -1,5 +1,5 @@
 {
-    "version": "1.2.3",
+    "version": "1.2.4",
     "types": "dist/index.d.ts",
     "dependencies": {
         "@masx200/async-task-current-limiter": "^1.0.7",

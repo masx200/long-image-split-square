@@ -62,6 +62,10 @@ yarn build
 yarn start
 ```
 
+# 长图判定方法
+
+图片长边与短边的比例大于 3，且短边大于 400 像素,横向或竖向均可
+
 ## 配置
 
 编辑`image-config.json`文件
