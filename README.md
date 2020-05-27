@@ -104,11 +104,11 @@ http://www.graphicsmagick.org/formats.html
 
 # 命令行用法示例
 
-必选参数 `input`:输入图片目录 `string`
+必选参数 `input`:类型`string`,输入图片目录
 
-必选参数 `output`:输出图片目录 `string`
+必选参数 `output`:类型`string`,输出图片目录
 
-可选参数 `maxpixels`:输出图片最大像素数 `number`
+可选参数 `maxpixels`:类型`number`,输出图片最大像素数
 
 ```shell
 node ./dist/cli.js --input=D:/baidupandownload/图片输入  --output=D:/baidupandownload/输出切割图片/
