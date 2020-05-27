@@ -114,13 +114,15 @@ http://www.graphicsmagick.org/formats.html
 
 可选参数 `maxpixels`:类型`number`,输出图片最大像素数
 
+可选参数 concurrent:类型:number,同时运行的图片处理进程最大值
+
 ```shell
 node ./dist/cli.js --input=D:/baidupandownload/图片输入  --output=D:/baidupandownload/输出切割图片/
 
 ```
 
 ```shell
-node ./dist/cli.js --input=D:/baidupandownload/图片输入  --output=D:/baidupandownload/输出切割图片/ --maxpixels=4000000
+node ./dist/cli.js --input=D:/baidupandownload/图片输入  --output=D:/baidupandownload/输出切割图片/ --maxpixels=4000000 --concurrent=4
 
 ```
 
