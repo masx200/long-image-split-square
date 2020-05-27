@@ -23,6 +23,13 @@ if (input && output) {
     });
 } else {
     console.error("批量把长图竖直拆分成接近正方形的小图片");
+    console.error(`
+    必选参数 \`input\`:输入图片目录 \`string\`
+
+    必选参数 \`output\`:输出图片目录 \`string\`
+    
+    可选参数 \`maxpixels\`:输出图片最大像素数 \`number\`
+    `);
     console.error("示例:");
     console.error(
         `node ./dist/cli.js --input=D:/baidupandownload/图片输入/  --output=D:/baidupandownload/暴力切割图片/`
