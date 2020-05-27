@@ -119,3 +119,8 @@ node ./dist/cli.js --input=D:/baidupandownload/图片输入  --output=D:/baidupa
 node ./dist/cli.js --input=D:/baidupandownload/图片输入  --output=D:/baidupandownload/输出切割图片/ --maxpixels=4000000
 
 ```
+
+```shell
+npx @masx200/long-image-split-square --input=D:/baidupandownload/图片输入  --output=D:/baidupandownload/输出切割图片/ --maxpixels=4000000
+
+```
