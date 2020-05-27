@@ -46,7 +46,11 @@ http://www.linuxfromscratch.org/blfs/view/svn/general/libwebp.html
 
 http://www.graphicsmagick.org/README.html
 
-安装 `node_modules`
+## 安装 `node_modules`
+
+```
+yarn add @masx200/long-image-split-square
+```
 
 ```shell
 yarn install
