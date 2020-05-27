@@ -1,4 +1,7 @@
 {
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org"
+    },
     "bin": " ./dist/cli.js",
     "version": "1.2.6",
     "types": "dist/index.d.ts",
