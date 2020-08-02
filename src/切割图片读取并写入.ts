@@ -31,6 +31,8 @@ export default async function cropimagewrite(
             //     gmcrop,
             //     [inputfile, tempname, width, height, left, top]
             // ]);
+
+try{
             await gmcrop(
                 inputfile,
                 tempname,
@@ -41,7 +43,15 @@ export default async function cropimagewrite(
                 top
             );
             await gmresize(tempname, outfile, width, height, maxpixels);
-        } else {
+     }catch(e){
+console.error(e)
+
+return Promise.reject(e)
+
+}finally{  await fs.promises.unlink(tempname);
+}
+
+ } else {
             await gmcrop(
                 inputfile,
                 outfile,
@@ -73,7 +83,10 @@ export default async function cropimagewrite(
             ]);
             // await;
         } else {
-            /* const execout = */ await img2webp(tempname1, outfile);
+            /* const execout = */ 
+
+
+await img2webp(tempname1, outfile);
             // console.log(execout);
             await fs.promises.unlink(tempname1);
         }
