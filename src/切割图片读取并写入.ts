@@ -43,7 +43,8 @@ try{
                 top
             );
             await gmresize(tempname, outfile, width, height, maxpixels);
-     }catch(e){
+     }
+catch(e){
 console.error(e)
 
 return Promise.reject(e)
@@ -64,6 +65,9 @@ return Promise.reject(e)
         }
     } else {
         const tempname1 = gettempjpgfilepath();
+const tempname2 = gettempjpgfilepath();
+
+try{
         await gmcrop(
             inputfile,
             tempname1,
@@ -74,7 +78,7 @@ return Promise.reject(e)
             top
         );
         if (shouldresize(width, height, maxpixels)) {
-            const tempname2 = gettempjpgfilepath();
+            //const tempname2 = gettempjpgfilepath();
             await gmresize(tempname1, tempname2, width, height, maxpixels);
             await img2webp(tempname2, outfile);
             await Promise.all([
@@ -90,6 +94,24 @@ await img2webp(tempname1, outfile);
             // console.log(execout);
             await fs.promises.unlink(tempname1);
         }
+
+}
+
+
+catch(e){
+console.error(e)
+
+return Promise.reject(e)
+
+}finally{  
+
+
+await Promise.all([
+                fs.promises.unlink(tempname1),
+                fs.promises.unlink(tempname2)
+            ]);
+}
+
     }
 }
 function shouldresize(width: number, height: number, maxpixels: number) {
