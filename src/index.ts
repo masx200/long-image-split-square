@@ -11,6 +11,7 @@ let filesum = 0;
 let finishcount = 0;
 export { start };
 async function start(config: IMAGECONFIG) {
+console.log(config)
     const {
         inputextentions,
         input,
