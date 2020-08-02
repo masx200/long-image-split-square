@@ -18,10 +18,9 @@ if (input && output) {
             config.maxpixels = maxpixels;
         }
         const options = Object.assign({}, config, { input, output });
-        
 
-    console.log(JSON.stringify(options, null, 4));
-//console.log(options);
+        console.log(JSON.stringify(options, null, 4));
+        //console.log(options);
         start(options);
     });
 } else {

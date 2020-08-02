@@ -11,7 +11,7 @@ let filesum = 0;
 let finishcount = 0;
 export { start };
 async function start(config: IMAGECONFIG) {
-console.log(config)
+    console.log(config);
     const {
         inputextentions,
         input,
@@ -27,21 +27,24 @@ console.log(config)
     console.log("找到图片文件" + files.length + "个");
     console.log(JSON.stringify(files, null, 4));
     /*读取文件交给GM去做，*/
-   await Promise.all( files.map(async (inputfile) => {
-        await splitimageandwrite(
-            inputfile,
-            input,
-            outputextention,
-            output,
-            maxpixels
-        );
-        finishcount++;
-        let 进度 = "processing: "+`${
-            (finishcount / filesum) * 100
-        }% ${finishcount} / ${filesum} `;
+    await Promise.all(
+        files.map(async (inputfile) => {
+            await splitimageandwrite(
+                inputfile,
+                input,
+                outputextention,
+                output,
+                maxpixels
+            );
+            finishcount++;
+            let 进度 =
+                "processing: " +
+                `${
+                    (finishcount / filesum) * 100
+                }% ${finishcount} / ${filesum} `;
 
-        process.title = 进度;
-        console.log( 进度);
-    })
-);
+            process.title = 进度;
+            console.log(进度);
+        })
+    );
 }
