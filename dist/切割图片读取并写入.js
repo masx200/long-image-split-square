@@ -12,37 +12,61 @@ const tempdir = os.tmpdir();
 function gettempjpgfilepath() {
     return path.resolve(tempdir, "temp-" + uuidv4() + ".jpg");
 }
-export default async function cropimagewrite(inputfile, outfile, width, height, left, top, maxpixels) {
+export default async function cropimagewrite(
+    inputfile,
+    outfile,
+    width,
+    height,
+    left,
+    top,
+    maxpixels
+) {
     if (!outfile.endsWith(".webp")) {
         if (shouldresize(width, height, maxpixels)) {
             const tempname = gettempjpgfilepath();
-            await gmcrop(inputfile, tempname, width, height, left, top);
-            await gmresize(tempname, outfile, width, height, maxpixels);
-        }
-        else {
+            try {
+                await gmcrop(inputfile, tempname, width, height, left, top);
+                await gmresize(tempname, outfile, width, height, maxpixels);
+            } catch (e) {
+                console.error(e);
+                return Promise.reject(e);
+            } finally {
+                await fs.promises.unlink(tempname);
+            }
+        } else {
             await gmcrop(inputfile, outfile, width, height, left, top);
         }
-    }
-    else {
+    } else {
         const tempname1 = gettempjpgfilepath();
-        await gmcrop(inputfile, tempname1, width, height, left, top);
-        if (shouldresize(width, height, maxpixels)) {
-            const tempname2 = gettempjpgfilepath();
-            await gmresize(tempname1, tempname2, width, height, maxpixels);
-            await img2webp(tempname2, outfile);
+        const tempname2 = gettempjpgfilepath();
+        try {
+            await gmcrop(inputfile, tempname1, width, height, left, top);
+            if (shouldresize(width, height, maxpixels)) {
+                await gmresize(tempname1, tempname2, width, height, maxpixels);
+                await img2webp(tempname2, outfile);
+                await Promise.all([
+                    fs.promises.unlink(tempname1),
+                    fs.promises.unlink(tempname2),
+                ]);
+            } else {
+                await img2webp(tempname1, outfile);
+                await fs.promises.unlink(tempname1);
+            }
+        } catch (e) {
+            console.error(e);
+            return Promise.reject(e);
+        } finally {
             await Promise.all([
                 fs.promises.unlink(tempname1),
-                fs.promises.unlink(tempname2)
+                fs.promises.unlink(tempname2),
             ]);
-        }
-        else {
-            await img2webp(tempname1, outfile);
-            await fs.promises.unlink(tempname1);
         }
     }
 }
 function shouldresize(width, height, maxpixels) {
-    return (typeof maxpixels === "number" &&
+    return (
+        typeof maxpixels === "number" &&
         maxpixels > 0 &&
-        maxpixels < width * height);
+        maxpixels < width * height
+    );
 }

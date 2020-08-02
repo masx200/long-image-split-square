@@ -5,8 +5,7 @@ export default function (cmd, args) {
         execFile(cmd, args, function (error, stdout, stderr) {
             if (error) {
                 return rej({ error, stdout, stderr });
-            }
-            else {
+            } else {
                 return res({ stdout, stderr });
             }
         });

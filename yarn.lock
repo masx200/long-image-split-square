@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@masx200/async-task-current-limiter@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.npmjs.org/@masx200/async-task-current-limiter/-/async-task-current-limiter-1.0.7.tgz#3ece89cdad6729d611d4db0760a4c30c0f761629"
-  integrity sha512-e4Z/s6KnXU+1pansTfaRaseF/dvLYnIDn8UrubzbF0N/gRpxnpgMG/IPZofW8deiHnE08eMQDt/dTl0KSnPxtQ==
+"@masx200/async-task-current-limiter@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.npm.taobao.org/@masx200/async-task-current-limiter/download/@masx200/async-task-current-limiter-1.0.8.tgz#cb23867600889c470f1806c9ec6cb60c3505f5ef"
+  integrity sha1-yyOGdgCInEcPGAbJ7Gy2DDUF9e8=
   dependencies:
-    "@masx200/event-emitter-target" "^1.1.5"
+    "@masx200/event-emitter-target" "^1.1.7"
 
-"@masx200/event-emitter-target@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.npmjs.org/@masx200/event-emitter-target/-/event-emitter-target-1.1.5.tgz#d176c743eb67dca7d65984293c19a56284d55e03"
-  integrity sha512-+SIaAsoFZ0UioQRrQ0Yf7prpfchsx4G4KunDFsSJSo3haVBk2IXOI4PdE+Mg6hiSelSHoxgIf5MUbjlglMpnxQ==
+"@masx200/event-emitter-target@^1.1.7":
+  version "1.1.7"
+  resolved "https://registry.npm.taobao.org/@masx200/event-emitter-target/download/@masx200/event-emitter-target-1.1.7.tgz#11757a805314886ecb54a5aa5fab6815b33b0913"
+  integrity sha1-EXV6gFMUiG7LVKWqX6toFbM7CRM=
 
 "@types/find@^0.2.1":
   version "0.2.1"
@@ -124,10 +124,10 @@ ms@^2.1.1:
   resolved "https://registry.npm.taobao.org/ms/download/ms-2.1.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fms%2Fdownload%2Fms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=
 
-prettier@1.19.1:
-  version "1.19.1"
-  resolved "https://registry.npm.taobao.org/prettier/download/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
-  integrity sha1-99f1/4qc2HKnvkyhQglZVqYHl8s=
+prettier@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.npm.taobao.org/prettier/download/prettier-2.0.5.tgz#d6d56282455243f2f92cc1716692c08aa31522d4"
+  integrity sha1-1tVigkVSQ/L5LMFxZpLAiqMVItQ=
 
 pseudomap@^1.0.2:
   version "1.0.2"
@@ -144,10 +144,10 @@ tslib@^1.10.0:
   resolved "https://registry.npm.taobao.org/tslib/download/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha1-w8GflZc/sKYpc/sJ2Q2WHuQ+XIo=
 
-typescript@^3.7.5:
-  version "3.7.5"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
-  integrity sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
+typescript@^3.9.7:
+  version "3.9.7"
+  resolved "https://registry.npm.taobao.org/typescript/download/typescript-3.9.7.tgz?cache=0&sync_timestamp=1596266269891&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftypescript%2Fdownload%2Ftypescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
+  integrity sha1-mNYApevcOPQMsndSLxLcgA6eJfo=
 
 universalify@^0.1.0:
   version "0.1.2"

@@ -7,12 +7,11 @@ async function gmcrop(inputfile, outfile, width, height, left, top) {
         gm(inputfile)
             .crop(width, height, left, top)
             .write(outfile, (err) => {
-            if (err) {
-                return rej(err);
-            }
-            else {
-                return res();
-            }
-        });
+                if (err) {
+                    return rej(err);
+                } else {
+                    return res();
+                }
+            });
     });
 }

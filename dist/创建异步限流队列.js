@@ -9,8 +9,7 @@ function 创建异步限流队列(同时读取的最大文件数) {
         const cached = cachesymbol.get(name);
         if (cached) {
             return cached;
-        }
-        else {
+        } else {
             const s = Symbol(name);
             cachesymbol.set(name, s);
             return s;
@@ -66,7 +65,7 @@ function 创建异步限流队列(同时读取的最大文件数) {
             shouldrun = true;
             next();
         }
-        return new Promise(res => {
+        return new Promise((res) => {
             target.once(getsymbolcached("settle" + index), (settledpromise) => {
                 res(settledpromise);
             });
@@ -90,7 +89,7 @@ function 创建异步限流队列(同时读取的最大文件数) {
             },
             get current() {
                 return 当前同时读取的文件数;
-            }
+            },
         },
         queue: {
             get max() {
@@ -98,9 +97,9 @@ function 创建异步限流队列(同时读取的最大文件数) {
             },
             get current() {
                 return pointer;
-            }
+            },
         },
-        target
+        target,
     };
     function decre() {
         if (当前同时读取的文件数 - 1 < 0) {
@@ -112,8 +111,7 @@ function 创建异步限流队列(同时读取的最大文件数) {
     function dispatchstatus() {
         if (当前同时读取的文件数 >= 同时读取的最大文件数) {
             target.emit("full", status());
-        }
-        else {
+        } else {
             target.emit("free", status());
         }
     }
@@ -121,8 +119,7 @@ function 创建异步限流队列(同时读取的最大文件数) {
         if (当前同时读取的文件数 < 同时读取的最大文件数) {
             当前同时读取的文件数++;
             dispatchstatus();
-        }
-        else {
+        } else {
             throw Error();
         }
     }

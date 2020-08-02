@@ -10,16 +10,14 @@ async function gmresize(inputfile, outfile, width, height, maxpixels) {
             gm(inputfile)
                 .resize(floor(width * retio), floor(height * retio), ">")
                 .write(outfile, (err) => {
-                if (err) {
-                    return rej(err);
-                }
-                else {
-                    return res();
-                }
-            });
+                    if (err) {
+                        return rej(err);
+                    } else {
+                        return res();
+                    }
+                });
         });
-    }
-    else {
+    } else {
         throw new Error();
     }
 }
