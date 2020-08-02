@@ -1,5 +1,5 @@
 function findfiles(pattern: string | RegExp, root: string): Promise<string[]> {
-   // console.log([pattern, root]);
+    // console.log([pattern, root]);
     return new Promise((s, j) => {
         find.file(pattern, root, (files) => {
             s(files);
