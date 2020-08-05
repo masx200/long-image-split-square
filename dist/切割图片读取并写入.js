@@ -31,7 +31,7 @@ export default async function cropimagewrite(
                 console.error(e);
                 return Promise.reject(e);
             } finally {
-                await fs.promises.unlink(tempname);
+                await unlinkexists(tempname);
             }
         } else {
             await gmcrop(inputfile, outfile, width, height, left, top);
@@ -45,20 +45,20 @@ export default async function cropimagewrite(
                 await gmresize(tempname1, tempname2, width, height, maxpixels);
                 await img2webp(tempname2, outfile);
                 await Promise.all([
-                    fs.promises.unlink(tempname1),
-                    fs.promises.unlink(tempname2),
+                    unlinkexists(tempname1),
+                    unlinkexists(tempname2),
                 ]);
             } else {
                 await img2webp(tempname1, outfile);
-                await fs.promises.unlink(tempname1);
+                await unlinkexists(tempname1);
             }
         } catch (e) {
             console.error(e);
             return Promise.reject(e);
         } finally {
             await Promise.all([
-                fs.promises.unlink(tempname1),
-                fs.promises.unlink(tempname2),
+                unlinkexists(tempname1),
+                unlinkexists(tempname2),
             ]);
         }
     }
@@ -69,4 +69,9 @@ function shouldresize(width, height, maxpixels) {
         maxpixels > 0 &&
         maxpixels < width * height
     );
+}
+async function unlinkexists(file) {
+    if (fs.existsSync(file)) {
+        await fs.promises.unlink(file);
+    }
 }

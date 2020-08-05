@@ -3,7 +3,7 @@
         "registry": "https://registry.npmjs.org"
     },
     "bin": "./dist/cli.js",
-    "version": "1.2.10",
+    "version": "1.2.11",
     "types": "dist/index.d.ts",
     "devDependencies": {
         "prettier": "^2.0.5",

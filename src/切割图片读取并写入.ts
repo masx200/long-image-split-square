@@ -48,7 +48,7 @@ export default async function cropimagewrite(
 
                 return Promise.reject(e);
             } finally {
-                await fs.promises.unlink(tempname);
+                await unlinkexists(tempname);
             }
         } else {
             await gmcrop(
@@ -80,8 +80,8 @@ export default async function cropimagewrite(
                 await gmresize(tempname1, tempname2, width, height, maxpixels);
                 await img2webp(tempname2, outfile);
                 await Promise.all([
-                    fs.promises.unlink(tempname1),
-                    fs.promises.unlink(tempname2),
+                    unlinkexists(tempname1),
+                    unlinkexists(tempname2),
                 ]);
                 // await;
             } else {
@@ -89,7 +89,7 @@ export default async function cropimagewrite(
 
                 await img2webp(tempname1, outfile);
                 // console.log(execout);
-                await fs.promises.unlink(tempname1);
+                await unlinkexists(tempname1);
             }
         } catch (e) {
             console.error(e);
@@ -97,8 +97,9 @@ export default async function cropimagewrite(
             return Promise.reject(e);
         } finally {
             await Promise.all([
-                fs.promises.unlink(tempname1),
-                fs.promises.unlink(tempname2),
+                //如果文件已经不存在，删除会失败
+                unlinkexists(tempname1),
+                unlinkexists(tempname2),
             ]);
         }
     }
@@ -111,3 +112,9 @@ function shouldresize(width: number, height: number, maxpixels: number) {
     );
 }
 // import 文件读取队列 from "./文件读取队列.js";
+
+async function unlinkexists(file: string) {
+    if (fs.existsSync(file)) {
+        await fs.promises.unlink(file);
+    }
+}
