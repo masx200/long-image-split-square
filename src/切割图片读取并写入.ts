@@ -1,7 +1,7 @@
 import fs from "fs";
 import os from "os";
 import path from "path";
-import uuidv4 from "uuid/v4.js";
+import {v4 as uuidv4} from "uuid";
 import gmcrop from "./异步限流-gmcrop.js";
 import img2webp from "./异步限流-img2webp.js";
 import gmresize from "./异步限流-gmresize.js";
