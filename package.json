@@ -3,7 +3,7 @@
         "registry": "https://registry.npmjs.org"
     },
     "bin": "./dist/cli.js",
-    "version": "1.2.11",
+    "version": "1.3.1",
     "types": "dist/index.d.ts",
     "devDependencies": {
         "prettier": "^2.0.5",
@@ -11,16 +11,16 @@
         "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@masx200/async-task-current-limiter": "^1.0.8",
+        "@masx200/async-task-current-limiter": "^1.0.9",
         "@types/find": "^0.2.1",
         "@types/fs-extra": "^8.0.1",
         "@types/gm": "^1.18.7",
         "@types/node": "^13.1.4",
         "@types/uuid": "^3.4.7",
         "find": "^0.3.0",
-        "fs-extra": "^8.1.0",
+        "fs-extra": "^9.0.1",
         "gm": "^1.23.1",
-        "uuid": "^3.4.0"
+        "uuid": "^8.3.0"
     },
     "module": "dist/index.js",
     "type": "module",
