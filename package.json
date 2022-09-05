@@ -20,7 +20,7 @@
         "find": "^0.3.0",
         "fs-extra": "^10.1.0",
         "gm": "^1.23.1",
-        "uuid": "^8.3.0"
+        "uuid": "^9.0.0"
     },
     "module": "dist/index.js",
     "type": "module",
