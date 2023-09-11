@@ -6,7 +6,7 @@
     "version": "1.4.0",
     "types": "dist/index.d.ts",
     "devDependencies": {
-        "prettier": "^2.0.5",
+        "prettier": "^3.0.3",
         "tslib": "^2.4.0",
         "typescript": "^5.0.4"
     },
