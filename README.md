@@ -114,6 +114,10 @@ http://www.graphicsmagick.org/formats.html
 
 可选参数 concurrent:类型:number,同时运行的图片处理进程最大值
 
+可选参数 gm-path: 类型:string,输入 gm 的路径
+
+可选参数 cwebp-path: 类型:string,输入 cwebp 的路径
+
 ```shell
 node ./dist/cli.js --input=D:/baidupandownload/图片输入  --output=D:/baidupandownload/输出切割图片/
 ```

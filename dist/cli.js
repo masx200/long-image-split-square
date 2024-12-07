@@ -31,6 +31,15 @@ if (input && output) {
 可选参数 concurrent:类型:number,同时运行的图片处理进程最大值
 
 可选参数 inputextentions: 类型:string,输入图片文件后缀，多个用逗号隔开，默认为"jpg,png,jpeg,bmp,webp"
+
+
+
+可选参数 gm-path: 类型:string,输入 gm 的路径
+
+
+可选参数 cwebp-path: 类型:string,输入 cwebp 的路径
+
+
 `);
     console.error("示例:");
     console.error(

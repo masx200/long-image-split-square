@@ -1,9 +1,12 @@
 import gm from "gm";
 import 图片处理限流 from "./图片处理限流.js";
+import argsobj from "./parsed-cli-options.js";
 const { asyncwrap } = 图片处理限流;
 const { floor, sqrt } = Math;
 export default asyncwrap(gmresize);
-
+export const gm_sub = argsobj["gm-path"]
+    ? gm.subClass({ appPath: String(argsobj["gm-path"]) })
+    : gm;
 async function gmresize(
     inputfile: string,
     outfile: string,
@@ -16,7 +19,7 @@ async function gmresize(
         const retio = sqrt(maxpixels / (width * height));
         // '>'; /** Change dimensions only if image is larger than width or height */
         await new Promise<void>((res, rej) => {
-            gm(inputfile)
+            gm_sub(inputfile)
                 .resize(floor(width * retio), floor(height * retio), ">")
                 .write(outfile, (err: Error | null) => {
                     if (err) {

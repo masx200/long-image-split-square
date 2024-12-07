@@ -9,6 +9,7 @@ http://www.voidcn.com/article/p-nnypakbc-eh.html
 */
 import gm from "gm";
 import { wrapasynclimit } from "./wrap-async-function.js";
+import { gm_sub } from "./异步限流-gmresize.js";
 /*https://blog.csdn.net/qq160816/article/details/52684362*/
 //export const im=gm.subClass({imageMagick: true})
 /*Error: Command failed: gm identify: No decode delegate for this image format ().
@@ -17,7 +18,7 @@ export default wrapasynclimit(getimgsize);
 
 async function getimgsize(filename: string): Promise<gm.Dimensions> {
     const result: gm.Dimensions = await new Promise((s, j) => {
-        gm(filename).size((e, dimensions) => {
+        gm_sub(filename).size((e, dimensions) => {
             if (e) {
                 return j(e);
             } else {
