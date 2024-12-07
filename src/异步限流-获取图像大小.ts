@@ -15,7 +15,14 @@ import { gm_sub } from "./异步限流-gmresize.js";
 /*Error: Command failed: gm identify: No decode delegate for this image format ().
 gm identify: Request did not return an image.*/
 export default wrapasynclimit(getimgsize);
-
+/**
+ * 异步获取图片的尺寸信息
+ * 此函数通过Promise封装了对图片尺寸信息的获取过程，使用了GraphicsMagick库的子进程来读取图片的尺寸数据
+ * 主要用于在需要的地方通过await调用，以获取图片的宽度和高度等信息
+ *
+ * @param filename 图片文件的路径和名称这是函数需要的唯一参数，用于确定是哪张图片
+ * @returns 返回一个Promise，解析为gm.Dimensions类型，包含图片的尺寸信息
+ */
 async function getimgsize(filename: string): Promise<gm.Dimensions> {
     const result: gm.Dimensions = await new Promise((s, j) => {
         gm_sub(filename).size((e, dimensions) => {
