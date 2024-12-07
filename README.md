@@ -14,7 +14,6 @@
 
 ```shell
 sudo apt install graphicsmagick
-
 ```
 
 或者下载`GraphicsMagick`
@@ -27,7 +26,6 @@ https://cdn.jsdelivr.net/gh/masx200/long-image-split-square@GraphicsMagick-1.3.3
 
 ```shell
 sudo apt install  libwebp
-
 ```
 
 或者下载`libwebp`的可执行文件
@@ -118,15 +116,16 @@ http://www.graphicsmagick.org/formats.html
 
 ```shell
 node ./dist/cli.js --input=D:/baidupandownload/图片输入  --output=D:/baidupandownload/输出切割图片/
-
 ```
 
 ```shell
 node ./dist/cli.js --input=D:/baidupandownload/图片输入  --output=D:/baidupandownload/输出切割图片/ --maxpixels=4000000 --concurrent=4
-
 ```
 
 ```shell
 npx @masx200/long-image-split-square --input=D:/baidupandownload/图片输入  --output=D:/baidupandownload/输出切割图片/ --maxpixels=4000000
-
 ```
+
+# 更新日志
+
+升级版本 GraphicsMagick 1.3.45 之后支持了 webp 作为输入文件格式了

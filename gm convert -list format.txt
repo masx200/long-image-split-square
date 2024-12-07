@@ -1,40 +1,45 @@
-$ gm convert -list format                                                               
-   Format L  Mode  Description                                                          
---------------------------------------------------------------------------------        
-      3FR S  r--  Hasselblad Photo RAW                                                  
-     8BIM P  rw-  Photoshop resource format                                             
+gm convert -list format 
+   Format L  Mode  Description
+--------------------------------------------------------------------------------
+      3FR U  r--  Hasselblad Photo RAW
+     8BIM P  rw-  Photoshop resource format
  8BIMTEXT P  rw-  Photoshop resource text format
-8BIMWTEXT P  rw-  Photoshop resource wide text format                                   
-     APP1 P  rw-  Raw application information                                           
- APP1JPEG P  rw-  Raw JPEG binary data                                                  
-      ART S  rw-  PFS: 1st Publisher                                                    
-      ARW S  r--  Sony Alpha DSLR RAW                                                   
-      AVS U  rw+  AVS X image                                                           
-        B S  rw+  Raw blue samples                                                      
-  BIGTIFF P  rw+  Tagged Image File Format (64-bit offsets)                             
-      BMP P  rw-  Microsoft Windows bitmap image                                        
-     BMP2 P  -w-  Microsoft Windows bitmap image v2                                     
-     BMP3 P  -w-  Microsoft Windows bitmap image v3                                     
-      BRF S  -w-  BRF ASCII Braille format                                              
+8BIMWTEXT P  rw-  Photoshop resource wide text format
+      AAI U  rw+  AAI Dune image
+     AgPP1 P  rw-  Raw application information
+ APP1JPEG P  rw-  Raw JPEG binary data
+      ART S  rw-  PFS: 1st Publisher
+      ARW U  r--  Sony Alpha DSLR RAW
+      AVS U  rw+  AVS X image
+        B S  rw+  Raw blue samples
+      BIE S  rw-  Joint Bi-level Image experts Group interchange format (JBIG-Kit 2.1 (GPL license))
+  BIGTIFF P  rw+  Tagged Image File Format (64-bit offsets)
+            Supported Compressions: None, Fax/Group3, Group4, JBIG, JPEG, LZW, LZMA, RLE, ZIP, ZSTD, WEBP
+      BMP P  rw-  Microsoft Windows bitmap image
+     BMP2 P  -w-  Microsoft Windows bitmap image v2
+     BMP3 P  -w-  Microsoft Windows bitmap image v3
+      BRF S  -w-  BRF ASCII Braille format
         C S  rw+  Raw cyan samples
-    CACHE U  ---  Magick Persistent Cache image format                                  
-     CALS S  rw-  Continuous Acquisition and Life-cycle Support Type 1 image            
-            Specified in MIL-R-28002 and MIL-PRF-28002                                  
-  CAPTION P  r--  Image caption                                                         
-      CIN S  rw-  Cineon Image File                                                     
-     CMYK S  rw+  Raw cyan, magenta, yellow, and black samples                          
-    CMYKA S  rw+  Raw cyan, magenta, yellow, black, and opacity samples                 
-      CR2 S  r--  Canon Photo RAW                                                       
-      CRW S  r--  Canon Photo RAW                                                       
+    CACHE U  ---  Magick Persistent Cache image format
+     CALS S  rw-  Continuous Acquisition and Life-cycle Support Type 1 image
+            Specified in MIL-R-28002 and MIL-PRF-28002
+  CAPTION P  r--  Image caption
+      CIN S  rw-  Cineon Image File
+CLIPBOARD S  rw-  Windows System Clipboard
+     CMYK S  rw+  Raw cyan, magenta, yellow, and black samples
+    CMYKA S  rw+  Raw cyan, magenta, yellow, black, and opacity samples
+      CR2 U  r--  Canon Photo RAW
+      CRW U  r--  Canon Photo RAW
       CUR S  r--  Microsoft Cursor Icon
-      CUT S  r--  DR Halo                                                               
-      DCM S  r--  Digital Imaging and Communications in Medicine image                  
-            See http://medical.nema.org/ for information on DICOM.                      
-      DCR S  r--  Kodak Photo RAW                                                       
-      DCX S  rw+  ZSoft IBM PC multi-page Paintbrush                                    
-      DNG S  r--  Adobe Digital Negative
+      CUT S  r--  DR Halo
+      DCM S  r--  Digital Imaging and Communications in Medicine image
+            See http://medical.nema.org/ for information on DICOM.
+      DCR U  r--  Kodak Photo RAW
+      DCX S  rw+  ZSoft IBM PC multi-page Paintbrush
+      DNG U  r--  Adobe Digital Negative
       DPX P  rw-  SMPTE 268M-2003 (DPX 2.0)
             See http://www.smtpe.org/ for information on DPX.
+      EMF S  r--  Windows WIN32 API rendered Enhanced Meta File
      EPDF P  rw-  Encapsulated Portable Document Format
       EPI P  rw-  Adobe Encapsulated PostScript Interchange format
       EPS P  rw-  Adobe Encapsulated PostScript
@@ -45,11 +50,12 @@ $ gm convert -list format
       EPT P  rw-  Adobe Encapsulated PostScript with MS-DOS TIFF preview
      EPT2 P  rw-  Adobe Level II Encapsulated PostScript with MS-DOS TIFF preview
      EPT3 P  rw-  Adobe Level III Encapsulated PostScript with MS-DOS TIFF preview
-      ERF S  r--  Epson RAW Format
+      ERF U  r--  Epson RAW Format
      EXIF P  rw-  Exif digital camera binary data
       FAX P  rw+  Group 3 FAX (Not TIFF Group3 FAX!)
      FILE S  r--  Uniform Resource Locator (file://)
      FITS S  rw-  Flexible Image Transport System
+      FPX U  rw-  FlashPix Format
   FRACTAL S  r--  Plasma fractal image
       FTP U  r--  Uniform Resource Locator (ftp://)
         G S  rw+  Raw green samples
@@ -59,7 +65,7 @@ $ gm convert -list format
      GRAY S  rw+  Raw gray samples
     GRAYA S  rw+  Raw gray samples + alpha
 HISTOGRAM P  -w-  Histogram of the image
-      HRZ S  r--  HRZ: Slow scan TV
+      HRZ S  rw-  HRZ: Slow scan TV
      HTML S  -w-  Hypertext Markup Language and a client-side image map
      HTTP U  r--  Uniform Resource Locator (http://)
       ICB S  rw+  Truevision Targa image
@@ -75,17 +81,19 @@ HISTOGRAM P  -w-  Histogram of the image
 IPTCWTEXT P  rw-  IPTC Newsphoto text format
    ISOBRL S  -w-  ISO/TR 11548-1 format
   ISOBRL6 S  -w-  ISO/TR 11548-1 format 6dot
-      J2C S  rw-  JPEG-2000 Code Stream Syntax
+      J2C S  rw-  JPEG-2000 Code Stream Syntax (JasPer 2.0.33)
+      JBG S  rw+  Joint Bi-level Image experts Group interchange format (JBIG-Kit 2.1 (GPL license))
+     JBIG U  rw+  Joint Bi-level Image experts Group interchange format (JBIG-Kit 2.1 (GPL license))
       JNG S  rw-  JPEG Network Graphics (libpng 1.6.37, zlib 1.2.11)
             See http://www.libpng.org/pub/mng/ for information on JNG.
       JNX S  r--  JNX: Garmin tile storage format
-      JP2 S  rw-  JPEG-2000 JP2 File Format Syntax
-      JPC S  rw-  JPEG-2000 Code Stream Syntax
-     JPEG P  rw-  Joint Photographic Experts Group JFIF format (IJG JPEG 80)
-      JPG P  rw-  Joint Photographic Experts Group JFIF format (IJG JPEG 80)
+      JP2 S  rw-  JPEG-2000 JP2 File Format Syntax (JasPer 2.0.33)
+      JPC S  rw-  JPEG-2000 Code Stream Syntax (JasPer 2.0.33)
+     JPEG P  rw-  Joint Photographic Experts Group JFIF format (IJG JPEG 90)
+      JPG P  rw-  Joint Photographic Experts Group JFIF format (IJG JPEG 90)
         K S  rw+  Raw black samples
-      K25 S  r--  Kodak Photo RAW
-      KDC S  r--  Kodak Photo RAW
+      K25 U  r--  Kodak Photo RAW
+      KDC U  r--  Kodak Photo RAW
     LABEL P  r--  Image label
         M S  rw+  Raw magenta samples
       M2V S  -w+  MPEG Video Stream
@@ -93,22 +101,23 @@ IPTCWTEXT P  rw-  IPTC Newsphoto text format
       MAP U  rw-  Colormap intensities and indices
       MAT S  rw+  MATLAB Level 4.0-7.0 image formats
     MATTE S  -w+  MATTE raw opacity format
-      MEF S  r--  Mamiya Photo RAW
-     MIFF P  rw+  Magick Image File Format (GraphicsMagick 1.3.34, Zlib 1.2.11, BZlib)
+      MEF U  r--  Mamiya Photo RAW
+     MIFF P  rw+  Magick Image File Format (GraphicsMagick 1.3.45, Zlib 1.2.11, BZlib)
       MNG S  rw+  Multiple-image Network Graphics (libpng 1.6.37, zlib 1.2.11)
             See http://www.libpng.org/pub/mng/ for information on MNG.
      MONO S  rw-  Bi-level bitmap in least-significant-byte first order
-      MPC U  rw+  Magick Persistent Cache image format
+      MPC U  rw-  Magick Persistent Cache image format
      MPEG S  -w+  MPEG Video Stream
       MPG S  -w+  MPEG Video Stream
-      MRW S  r--  Minolta Photo RAW
+      MRW U  r--  Minolta Photo RAW
       MSL S  rw+  Magick Scripting Language
       MTV U  rw+  MTV Raytracing image format
       MVG S  rw-  Magick Vector Graphics
-      NEF S  r--  Nikon Electronic Format
+      NEF U  r--  Nikon Electronic Format
      NULL P  rw-  Constant image of uniform color
         O S  rw+  Raw opacity samples
-      ORF S  r--  Olympus Photo RAW
+      ORA S  r--  Open Raster
+      ORF U  r--  Olympus Photo RAW
       OTB S  rw-  On-the-air bitmap
        P7 S  rw+  Xv thumbnail format
       PAL S  rw-  16bit/pixel interleaved YUV
@@ -122,25 +131,23 @@ IPTCWTEXT P  rw-  IPTC Newsphoto text format
       PCX S  rw-  ZSoft IBM PC Paintbrush
       PDB U  rw+  Palm Database ImageViewer Format
       PDF P  rw+  Portable Document Format
-      PEF S  r--  Pentax Electronic File
-      PFA P  r--  Postscript Type 1 font (ASCII) (FreeType 2.10.1)
-      PFB P  r--  Postscript Type 1 font (binary) (FreeType 2.10.1)
+      PEF U  r--  Pentax Electronic File
+      PFA P  r--  Postscript Type 1 font (ASCII) (FreeType 2.6.2)
+      PFB P  r--  Postscript Type 1 font (binary) (FreeType 2.6.2)
       PGM P  rw+  Portable graymap format (gray scale)
-      PGX S  rw-  JPEG-2000 VM Format
+      PGX U  rw-  JPEG-2000 VM Format (JasPer 2.0.33)
     PICON S  rw-  Personal Icon
      PICT S  rw-  Apple Macintosh QuickDraw/PICT
       PIX S  r--  Alias/Wavefront RLE image format
    PLASMA S  r--  Plasma fractal image
       PNG P  rw-  Portable Network Graphics (libpng 1.6.37, zlib 1.2.11)
             See http://www.libpng.org/ for information on PNG..
-    PNG00 P  rw-  PNG that inherits type and depth from original (libpng 1.6.37, zlib 1.
-2.11)
+    PNG00 P  rw-  PNG that inherits type and depth from original (libpng 1.6.37, zlib 1.2.11)
     PNG24 P  rw-  24-bit RGB PNG, opaque only (libpng 1.6.37, zlib 1.2.11)
     PNG32 P  rw-  32-bit RGBA PNG, semitransparency OK (libpng 1.6.37, zlib 1.2.11)
     PNG48 P  rw-  opaque or binary transparent 48-bit RGB (libpng 1.6.37, zlib 1.2.11)
     PNG64 P  rw-  opaque or transparent 64-bit RGBA (libpng 1.6.37, zlib 1.2.11)
-     PNG8 P  rw-  8-bit indexed PNG, binary transparency only (libpng 1.6.37, zlib 1.2.1
-1)
+     PNG8 P  rw-  8-bit indexed PNG, binary transparency only (libpng 1.6.37, zlib 1.2.11)
       PNM P  rw+  Portable anymap
       PPM P  rw+  Portable pixmap format (color)
   PREVIEW S  -w-  Show a preview an image enhancement, effect, or f/x
@@ -148,9 +155,10 @@ IPTCWTEXT P  rw-  IPTC Newsphoto text format
       PS2 P  -w+  Adobe Level II PostScript
       PS3 P  -w+  Adobe Level III PostScript
      PTIF S  rw+  Pyramid encoded TIFF
+            Supported Compressions: None, Fax/Group3, Group4, JBIG, JPEG, LZW, LZMA, RLE, ZIP, ZSTD, WEBP
       PWP U  r--  Seattle Film Works
         R S  rw+  Raw red samples
-      RAF S  r--  Fuji Photo RAW
+      RAF U  r--  Fuji Photo RAW
       RAS S  rw+  SUN Rasterfile
       RGB S  rw+  Raw red, green, and blue samples
      RGBA S  rw+  Raw red, green, blue, and matte samples
@@ -160,21 +168,22 @@ IPTCWTEXT P  rw-  IPTC Newsphoto text format
       SFW U  r--  Seattle Film Works
       SGI S  rw-  Irix RGB image
     SHTML S  -w-  Hypertext Markup Language and a client-side image map
-      SR2 S  r--  Sony Photo RAW
-      SRF S  r--  Sony Photo RAW
+      SR2 U  r--  Sony Photo RAW
+      SRF U  r--  Sony Photo RAW
   STEGANO S  r--  Steganographic image
       SUN S  rw+  SUN Rasterfile
       SVG S  r--  Scalable Vector Graphics (XML 2.9.10)
      SVGZ S  r--  Scalable Vector Graphics (ZIP compressed) (XML 2.9.10)
      TEXT S  rw+  ASCII Text
       TGA S  rw+  Truevision Targa image
-     TIFF P  rw+  Tagged Image File Format (LIBTIFF, Version 4.1.0)
+     TIFF P  rw+  Tagged Image File Format (LIBTIFF, Version 4.5.1)
+            Supported Compressions: None, Fax/Group3, Group4, JBIG, JPEG, LZW, LZMA, RLE, ZIP, ZSTD, WEBP
      TILE P  r--  Tile image with a texture
             Use the syntax "-size WIDTHxHEIGHT TILE:imagename" to tile the
             specified tile image over a canvas image of size WIDTHxHEIGHT.
       TIM S  r--  PSX TIM
-    TOPOL S  r--  TOPOL X Image
-      TTF P  r--  TrueType font (FreeType 2.10.1)
+    TOPOL S  rw-  TopoL X Image
+      TTF P  r--  TrueType font (FreeType 2.6.2)
       TXT S  rw+  ASCII Text
      UBRL S  -w-  Unicode Text format
     UBRL6 S  -w-  Unicode Text format 6dot
@@ -186,16 +195,60 @@ IPTCWTEXT P  rw-  IPTC Newsphoto text format
      VIFF S  rw+  Khoros Visualization image
       VST S  rw+  Truevision Targa image
      WBMP S  rw-  Wireless Bitmap (level 0) image
-      WPG U  r--  Word Perfect Graphics
-      X3F S  r--  Foveon X3 (Sigma/Polaroid) RAW
+     WEBP P  rw-  WebP Image Format (libwepb v1.0.3, ENCODER ABI 0x020E)
+      WMF S  r--  Windows Meta File
+            Use density to adjust scale (default 72DPI). Use background or
+            texture to apply a background color or texture under the image.
+ WMFWIN32 S  r--  Windows WIN32 API rendered Meta File
+      WPG U  rw-  Word Perfect Graphics
+        X S  ---  X Window System
+      X3F U  r--  Foveon X3 (Sigma/Polaroid) RAW
       XBM S  rw-  X Windows system bitmap (black/white)
        XC P  r--  Constant image uniform color
       XCF S  r--  GIMP image
       XMP P  rw-  Adobe XML metadata
       XPM S  rw-  X Windows system pixmap (color)
        XV S  rw+  Khoros Visualization image
+      XWD U  ---  X Windows system window dump (color)
         Y S  rw+  Raw yellow samples
       YUV S  rw-  CCIR 601 4:1:1 or 4:2:2 (8-bit only)
 
  Meaning of 'L': P=Primary, S=Stable, U=Unstable
-$
+
+gm version
+GraphicsMagick 1.3.45 2024-08-27 Q16 http://www.GraphicsMagick.org/
+Copyright (C) 2002-2024 GraphicsMagick Group.
+Additional copyrights and licenses apply to this software.
+See http://www.GraphicsMagick.org/www/Copyright.html for details.
+
+Feature Support:
+  Native Thread Safe         yes
+  Large Files (> 32 bit)     yes
+  Large Memory (> 32 bit)    yes
+  BZIP                       yes
+  FlashPix                   no
+  FreeType                   yes
+  Ghostscript (Library)      no
+  HEIF/HVEC ("HEIC")         no
+  JBIG                       yes
+  JPEG-2000                  yes
+  JPEG                       yes
+  JPEG XL                    no
+  Little CMS                 yes
+  Loadable Modules           yes
+  Solaris mtmalloc           no
+  Google perftools tcmalloc  no
+  OpenMP                     yes (200203 "2.0")
+  PNG                        yes
+  TIFF                       yes
+  TRIO                       no
+  Solaris umem               no
+  WebP                       yes
+  WMF                        yes
+  X11                        no
+  XML                        yes
+  ZLIB                       yes
+
+Windows Build Parameters:
+
+  MSVC Version:            1800
