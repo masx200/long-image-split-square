@@ -19,6 +19,7 @@ if (input && output) {
             );
         }
         console.log(JSON.stringify(options, null, 4));
+        console.log(JSON.stringify(argsobj, null, 4));
         start(options);
     });
 } else {
