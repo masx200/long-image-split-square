@@ -4,7 +4,7 @@ export interface EXECERROR {
     stdout: string;
     stderr: string;
 }
-export default function (
+export default function executeCommand(
     cmd: string,
     args: string[]
 ): Promise<{

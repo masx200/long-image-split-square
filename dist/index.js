@@ -5,12 +5,12 @@ import 递归查找图片 from "./递归查找文件.js";
 process.on("unhandledRejection", (err) => {
     throw err;
 });
-let filesum = 0;
-let finishcount = 0;
-const failurefiles = [];
-let failcount = 0;
 export { start };
 async function start(config) {
+    let filesum = 0;
+    let finishcount = 0;
+    const failurefiles = [];
+    let failcount = 0;
     console.log(config);
     const { inputextentions, input, output, outputextention, maxpixels } =
         config;
@@ -29,58 +29,64 @@ async function start(config) {
     } else {
         console.log("处理全部成功!");
     }
-}
-const slicecount = 500;
-async function handleconvert(files, input, outputextention, output, maxpixels) {
-    if (!files.length) {
-        return;
-    } else if (files.length > slicecount) {
-        const workfiles = files.slice(0, slicecount);
-        const restfiles = files.slice(slicecount);
-        await handleconvert(
-            workfiles,
-            input,
-            outputextention,
-            output,
-            maxpixels
-        );
-        await handleconvert(
-            restfiles,
-            input,
-            outputextention,
-            output,
-            maxpixels
-        );
-        return;
-    } else {
-        await Promise.all(
-            files.map(async (inputfile) => {
-                try {
-                    await splitimageandwrite(
-                        inputfile,
-                        input,
-                        outputextention,
-                        output,
-                        maxpixels
-                    );
-                    finishcount++;
-                } catch (e) {
-                    failcount++;
-                    failurefiles.push(inputfile);
-                    console.error(e);
-                }
-                let 进度 =
-                    "processing: " +
-                    `${
-                        (finishcount / filesum) * 100
-                    }% ${finishcount} / ${filesum} ` +
-                    "failure : " +
-                    failcount +
-                    "/" +
-                    filesum;
-                process.title = 进度;
-                console.log(进度);
-            })
-        );
+    async function handleconvert(
+        files,
+        input,
+        outputextention,
+        output,
+        maxpixels
+    ) {
+        if (!files.length) {
+            return;
+        } else if (files.length > slicecount) {
+            const workfiles = files.slice(0, slicecount);
+            const restfiles = files.slice(slicecount);
+            await handleconvert(
+                workfiles,
+                input,
+                outputextention,
+                output,
+                maxpixels
+            );
+            await handleconvert(
+                restfiles,
+                input,
+                outputextention,
+                output,
+                maxpixels
+            );
+            return;
+        } else {
+            await Promise.all(
+                files.map(async (inputfile) => {
+                    try {
+                        await splitimageandwrite(
+                            inputfile,
+                            input,
+                            outputextention,
+                            output,
+                            maxpixels
+                        );
+                        finishcount++;
+                    } catch (e) {
+                        failcount++;
+                        failurefiles.push(inputfile);
+                        console.error(e);
+                    }
+                    let 进度 =
+                        "processing: " +
+                        `${
+                            (finishcount / filesum) * 100
+                        }% ${finishcount} / ${filesum} ` +
+                        "failure : " +
+                        failcount +
+                        "/" +
+                        filesum;
+                    process.title = 进度;
+                    console.log(进度);
+                })
+            );
+        }
     }
 }
+const slicecount = 500;

@@ -4,7 +4,16 @@ import 计算长图切割参数 from "./计算长图切割参数.js";
 import cropimagewrite from "./切割图片读取并写入.js";
 import fsextra from "fs-extra";
 // import 文件读取队列 from "./文件读取队列.js";
-
+/**
+ * 异步函数，用于分割图像并写入多个文件
+ * 主要用于处理大尺寸图像，将其分割成多个小图像文件
+ * @param inputfile 输入图像文件的路径
+ * @param input 输入图像文件的路径（可能与inputfile相同，具体用途未明）
+ * @param outputextention 输出图像文件的扩展名
+ * @param output 输出图像文件的目录路径
+ * @param maxpixels 图像处理时的最大像素限制
+ * @returns 无返回值
+ */
 export default async function splitimageandwrite(
     inputfile: string,
     input: string,
