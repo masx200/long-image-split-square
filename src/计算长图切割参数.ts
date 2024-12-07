@@ -1,3 +1,13 @@
+/**
+ * 计算长图切割参数
+ *
+ * 根据长图的尺寸，计算出将图片切割为多个部分的参数这些参数可以用于确定每个切割部分的位置和大小
+ * 切割策略分为横向和纵向，取决于图片的长宽比和尺寸如果图片不符合切割条件，则不进行切割
+ *
+ * @param height 图片的高度
+ * @param width 图片的宽度
+ * @returns 返回一个数组，包含每个切割部分的位置和大小如果不需要切割，则返回undefined
+ */
 export default function 计算长图切割参数(height: number, width: number) {
     if (height > width * 3 && width > 400) {
         /* 竖向切割,只有top在变 */
