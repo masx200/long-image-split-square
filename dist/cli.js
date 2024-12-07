@@ -13,6 +13,11 @@ if (input && output) {
             config.maxpixels = maxpixels;
         }
         const options = Object.assign({}, config, { input, output });
+        if (argsobj["inputextentions"]) {
+            options.inputextentions = String(argsobj["inputextentions"]).split(
+                ","
+            );
+        }
         console.log(JSON.stringify(options, null, 4));
         start(options);
     });
@@ -23,7 +28,10 @@ if (input && output) {
 必选参数 \`output\`:类型\`string\`,输出图片目录 
     
 可选参数 \`maxpixels\`:类型\`number\`,输出图片最大像素数 
-可选参数 concurrent:类型:number,同时运行的图片处理进程最大值`);
+可选参数 concurrent:类型:number,同时运行的图片处理进程最大值
+
+可选参数 inputextentions: 类型:string,输入图片文件后缀，多个用逗号隔开，默认为"jpg,png,jpeg,bmp,webp"
+`);
     console.error("示例:");
     console.error(
         `node ./dist/cli.js --input=D:/baidupandownload/图片输入/  --output=D:/baidupandownload/暴力切割图片/`

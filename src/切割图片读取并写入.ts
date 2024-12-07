@@ -10,12 +10,11 @@ export function getBin(name: string) {
 }
 const tempdir = os.tmpdir();
 function gettempjpgfilepath() {
-    return path.resolve(tempdir, "temp-" + uuidv4() + ".jpg");
+    return path.resolve(tempdir, "temp-" + uuidv4() + ".webp");
 }
 export default async function cropimagewrite(
     inputfile: string,
     outfile: string,
-
     width: number,
     height: number,
     left: number,
@@ -33,15 +32,7 @@ export default async function cropimagewrite(
             // ]);
 
             try {
-                await gmcrop(
-                    inputfile,
-                    tempname,
-
-                    width,
-                    height,
-                    left,
-                    top
-                );
+                await gmcrop(inputfile, tempname, width, height, left, top);
                 await gmresize(tempname, outfile, width, height, maxpixels);
             } catch (e) {
                 console.error(e);
@@ -51,30 +42,14 @@ export default async function cropimagewrite(
                 await unlinkexists(tempname);
             }
         } else {
-            await gmcrop(
-                inputfile,
-                outfile,
-
-                width,
-                height,
-                left,
-                top
-            );
+            await gmcrop(inputfile, outfile, width, height, left, top);
         }
     } else {
         const tempname1 = gettempjpgfilepath();
         const tempname2 = gettempjpgfilepath();
 
         try {
-            await gmcrop(
-                inputfile,
-                tempname1,
-
-                width,
-                height,
-                left,
-                top
-            );
+            await gmcrop(inputfile, tempname1, width, height, left, top);
             if (shouldresize(width, height, maxpixels)) {
                 //const tempname2 = gettempjpgfilepath();
                 await gmresize(tempname1, tempname2, width, height, maxpixels);

@@ -10,7 +10,7 @@ export function getBin(name) {
 }
 const tempdir = os.tmpdir();
 function gettempjpgfilepath() {
-    return path.resolve(tempdir, "temp-" + uuidv4() + ".jpg");
+    return path.resolve(tempdir, "temp-" + uuidv4() + ".webp");
 }
 export default async function cropimagewrite(
     inputfile,
