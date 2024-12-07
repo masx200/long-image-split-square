@@ -5,13 +5,12 @@ export default asyncwrap(gmcrop);
 async function gmcrop(
     inputfile: string,
     outfile: string,
-
     width: number,
     height: number,
     left: number,
     top: number
-) {
-    await new Promise((res, rej) => {
+): Promise<void> {
+    await new Promise<void>((res, rej) => {
         gm(inputfile)
             .crop(width, height, left, top)
             .write(outfile, (err: Error | null) => {

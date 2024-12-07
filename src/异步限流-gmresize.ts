@@ -7,16 +7,15 @@ export default asyncwrap(gmresize);
 async function gmresize(
     inputfile: string,
     outfile: string,
-
     width: number,
     height: number,
     maxpixels: number
-) {
+): Promise<void> {
     /* 仅缩小图片 */
     if (maxpixels < width * height && maxpixels > 0) {
         const retio = sqrt(maxpixels / (width * height));
         // '>'; /** Change dimensions only if image is larger than width or height */
-        await new Promise((res, rej) => {
+        await new Promise<void>((res, rej) => {
             gm(inputfile)
                 .resize(floor(width * retio), floor(height * retio), ">")
                 .write(outfile, (err: Error | null) => {

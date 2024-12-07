@@ -7,9 +7,7 @@ export interface FUNANDARGS<T, S extends FUNRETPRO<T>> extends Array<any> {
 }
 declare type FUNRETPRO<T> = (...arg: any[]) => Promise<T>;
 export declare type 队列类型 = ReturnType<typeof 创建异步限流队列>;
-declare function 创建异步限流队列(
-    同时读取的最大文件数: number
-): {
+declare function 创建异步限流队列(同时读取的最大文件数: number): {
     add: <T, S extends FUNRETPRO<T>>(funargs: FUNANDARGS<T, S>) => Promise<T>;
     asyncwrap: <T_1 extends (...args: any[]) => Promise<any>>(fun: T_1) => T_1;
     status: () => 空闲状态;
