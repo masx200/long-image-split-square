@@ -5,7 +5,7 @@
     "bin": {
         "long-image-split-square": "dist/cli.js"
     },
-    "version": "1.5.2",
+    "version": "1.5.3",
     "types": "dist/index.d.ts",
     "devDependencies": {
         "prettier": "^3.1.0",
