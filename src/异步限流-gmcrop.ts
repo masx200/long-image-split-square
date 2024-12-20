@@ -40,8 +40,8 @@ async function gmcrop(
                     outfile,
                     async (
                         err: Error | null,
-                        stdout: stream.Readable,
-                        stderr: stream.Readable,
+                        stdout: stream.Readable | string,
+                        stderr: stream.Readable | string,
                         cmd: string
                     ) => {
                         if (err) {
@@ -63,7 +63,11 @@ async function gmcrop(
         }
     );
 }
-export function streamToString(readable: stream.Readable): Promise<string> {
+export function streamToString(
+    readable: stream.Readable | string
+): Promise<string> {
+    // console.log(readable);
+    if (typeof readable === "string") return Promise.resolve(readable);
     return new Promise((resolve, reject) => {
         readable.pipe(
             concat((data) => {

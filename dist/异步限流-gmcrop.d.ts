@@ -14,5 +14,5 @@ declare function gmcrop(
     cmd: string;
 }>;
 export declare function streamToString(
-    readable: stream.Readable
+    readable: stream.Readable | string
 ): Promise<string>;

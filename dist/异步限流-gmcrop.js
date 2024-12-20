@@ -30,6 +30,7 @@ async function gmcrop(inputfile, outfile, width, height, left, top) {
     });
 }
 export function streamToString(readable) {
+    if (typeof readable === "string") return Promise.resolve(readable);
     return new Promise((resolve, reject) => {
         readable.pipe(
             concat((data) => {
