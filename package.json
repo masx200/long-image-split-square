@@ -2,7 +2,9 @@
     "publishConfig": {
         "registry": "https://registry.npmjs.org"
     },
-    "bin": "./dist/cli.js",
+    "bin": {
+        "long-image-split-square": "dist/cli.js"
+    },
     "version": "1.5.0",
     "types": "dist/index.d.ts",
     "devDependencies": {
@@ -16,11 +18,8 @@
         "@types/find": "^0.2.1",
         "@types/fs-extra": "^11.0.1",
         "@types/gm": "^1.25.4",
-
         "@types/uuid": "^10.0.0",
-
         "@types/node": "^22.10.2",
-
         "find": "^0.3.0",
         "fs-extra": "^11.1.1",
         "gm": "^1.25.0",
@@ -39,7 +38,10 @@
     "keywords": [],
     "author": "masx200 <34191203+masx200@users.noreply.github.com>",
     "description": "批量把长图拆分成接近正方形的小图片的脚本",
-    "repository": "git+https://github.com/masx200/long-image-split-square.git",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/masx200/long-image-split-square.git"
+    },
     "bugs": {
         "url": "https://github.com/masx200/long-image-split-square/issues"
     },
