@@ -1,6 +1,8 @@
 import gm from "gm";
 import 图片处理限流 from "./图片处理限流.js";
 import argsobj from "./parsed-cli-options.js";
+import { streamToString } from "./异步限流-gmcrop.js";
+import stream from "node:stream";
 const { asyncwrap } = 图片处理限流;
 const { floor, sqrt } = Math;
 export default asyncwrap(gmresize);
@@ -27,24 +29,47 @@ async function gmresize(
     width: number,
     height: number,
     maxpixels: number
-): Promise<void> {
+): Promise<{ stdout: string; stderr: string; cmd: string }> {
     /* 仅缩小图片 */
     if (maxpixels < width * height && maxpixels > 0) {
         const retio = sqrt(maxpixels / (width * height));
         // '>'; /** Change dimensions only if image is larger than width or height */
-        await new Promise<void>((res, rej) => {
+        return await new Promise<{
+            stdout: string;
+            stderr: string;
+            cmd: string;
+        }>((res, rej) => {
             gm_sub(inputfile)
                 .resize(floor(width * retio), floor(height * retio), ">")
-                .write(outfile, (err: Error | null) => {
-                    if (err) {
-                        return rej(err);
-                    } else {
-                        return res();
+                .write(
+                    outfile,
+                    async (
+                        err: Error | null,
+                        stdout: stream.Readable,
+                        stderr: stream.Readable,
+                        cmd: string
+                    ) => {
+                        if (err) {
+                            return rej({
+                                err,
+                                cmd,
+                                stderr: await streamToString(stderr),
+                                stdout: await streamToString(stdout),
+                            });
+                        } else {
+                            return res({
+                                cmd,
+                                stderr: await streamToString(stderr),
+                                stdout: await streamToString(stdout),
+                            });
+                        }
                     }
-                });
+                );
         });
     } else {
-        throw new Error();
+        throw new Error(
+            `maxpixels参数无效，请检查是否为正数且不超过原始图片像素，当前参数为${maxpixels}`
+        );
         // await fs.promises.copyFile(inputfile, outfile);
     }
 }

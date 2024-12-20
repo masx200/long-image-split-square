@@ -25,8 +25,12 @@ export default async function cropimagewrite(
         if (shouldresize(width, height, maxpixels)) {
             const tempname = gettempjpgfilepath();
             try {
-                await gmcrop(inputfile, tempname, width, height, left, top);
-                await gmresize(tempname, outfile, width, height, maxpixels);
+                console.log(
+                    await gmcrop(inputfile, tempname, width, height, left, top)
+                );
+                console.log(
+                    await gmresize(tempname, outfile, width, height, maxpixels)
+                );
             } catch (e) {
                 console.error(e);
                 return Promise.reject(e);
@@ -34,22 +38,34 @@ export default async function cropimagewrite(
                 await unlinkexists(tempname);
             }
         } else {
-            await gmcrop(inputfile, outfile, width, height, left, top);
+            console.log(
+                await gmcrop(inputfile, outfile, width, height, left, top)
+            );
         }
     } else {
         const tempname1 = gettempjpgfilepath();
         const tempname2 = gettempjpgfilepath();
         try {
-            await gmcrop(inputfile, tempname1, width, height, left, top);
+            console.log(
+                await gmcrop(inputfile, tempname1, width, height, left, top)
+            );
             if (shouldresize(width, height, maxpixels)) {
-                await gmresize(tempname1, tempname2, width, height, maxpixels);
-                await img2webp(tempname2, outfile);
+                console.log(
+                    await gmresize(
+                        tempname1,
+                        tempname2,
+                        width,
+                        height,
+                        maxpixels
+                    )
+                );
+                console.log(await img2webp(tempname2, outfile));
                 await Promise.all([
                     unlinkexists(tempname1),
                     unlinkexists(tempname2),
                 ]);
             } else {
-                await img2webp(tempname1, outfile);
+                console.log(await img2webp(tempname1, outfile));
                 await unlinkexists(tempname1);
             }
         } catch (e) {

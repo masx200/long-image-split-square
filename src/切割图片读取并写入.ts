@@ -68,7 +68,9 @@ export default async function cropimagewrite(
                 console.log(
                     await gmcrop(inputfile, tempname, width, height, left, top)
                 );
-                await gmresize(tempname, outfile, width, height, maxpixels);
+                console.log(
+                    await gmresize(tempname, outfile, width, height, maxpixels)
+                );
             } catch (e) {
                 console.error(e);
 
@@ -91,7 +93,15 @@ export default async function cropimagewrite(
             );
             if (shouldresize(width, height, maxpixels)) {
                 //const tempname2 = gettempjpgfilepath();
-                await gmresize(tempname1, tempname2, width, height, maxpixels);
+                console.log(
+                    await gmresize(
+                        tempname1,
+                        tempname2,
+                        width,
+                        height,
+                        maxpixels
+                    )
+                );
                 console.log(await img2webp(tempname2, outfile));
                 await Promise.all([
                     unlinkexists(tempname1),

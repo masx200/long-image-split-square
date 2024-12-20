@@ -10,4 +10,6 @@ export default function executeCommand(
 ): Promise<{
     stdout: string;
     stderr: string;
+    cmd: string;
+    args: string[];
 }>;

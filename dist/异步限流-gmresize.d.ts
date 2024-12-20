@@ -8,4 +8,8 @@ declare function gmresize(
     width: number,
     height: number,
     maxpixels: number
-): Promise<void>;
+): Promise<{
+    stdout: string;
+    stderr: string;
+    cmd: string;
+}>;

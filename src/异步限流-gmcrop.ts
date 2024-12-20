@@ -3,6 +3,7 @@ import concat from "concat-stream";
 import stream from "node:stream";
 import 图片处理限流 from "./图片处理限流.js";
 import { gm_sub } from "./异步限流-gmresize.js";
+import { cwebp_crop } from "./异步限流-img2webp.js";
 
 const { asyncwrap } = 图片处理限流;
 export default asyncwrap(gmcrop);
@@ -24,8 +25,11 @@ async function gmcrop(
     width: number,
     height: number,
     left: number,
-    top: number,
+    top: number
 ): Promise<{ stdout: string; stderr: string; cmd: string }> {
+    if (inputfile.endsWith(".png")) {
+        return cwebp_crop(inputfile, outfile, width, height, left, top);
+    }
     //处理png图片出错,改成cwebp
     /* Error: Command failed: gm convert: bad adaptive filter value */
     return await new Promise<{ stdout: string; stderr: string; cmd: string }>(
@@ -38,7 +42,7 @@ async function gmcrop(
                         err: Error | null,
                         stdout: stream.Readable,
                         stderr: stream.Readable,
-                        cmd: string,
+                        cmd: string
                     ) => {
                         if (err) {
                             return rej({
@@ -54,19 +58,19 @@ async function gmcrop(
                                 stdout: await streamToString(stdout),
                             });
                         }
-                    },
+                    }
                 );
-        },
+        }
     );
 }
-export function streamToString(stderr: stream.Readable): Promise<string> {
+export function streamToString(readable: stream.Readable): Promise<string> {
     return new Promise((resolve, reject) => {
-        stderr.pipe(
+        readable.pipe(
             concat((data) => {
                 resolve(data.toString("utf8"));
-            }),
+            })
         );
-        stderr.on("error", reject);
+        readable.on("error", reject);
     });
 }
 // import { wrapasynclimit } from "./wrap-async-function.js";

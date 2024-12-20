@@ -30,3 +30,33 @@ async function img2webp(
     );
     return execout;
 }
+export async function cwebp_crop(
+    input: string,
+    output: string,
+    width: number,
+    height: number,
+    left: number,
+    top: number
+): Promise<{
+    stdout: string;
+    stderr: string;
+    cmd: string;
+    args: string[];
+}> {
+    let execout = await execpromise(
+        String(argsobj["cwebp-path"] ?? getBin("cwebp")),
+        [
+            " -crop",
+            left,
+            top,
+            width,
+            height,
+            "-o",
+            output,
+            "-v",
+            "--",
+            input,
+        ].map((a) => String(a))
+    );
+    return execout;
+}
