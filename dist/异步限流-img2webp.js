@@ -6,7 +6,7 @@ import argsobj from "./parsed-cli-options.js";
 export default asyncwrap(img2webp);
 async function img2webp(input, output) {
     let execout = await execpromise(
-        String(argsobj["cwebp-path"]) ?? getBin("cwebp"),
+        String(argsobj["cwebp-path"] ?? getBin("cwebp")),
         ["-o", output, "-v", "--", input]
     );
     return execout;

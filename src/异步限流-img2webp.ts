@@ -17,7 +17,7 @@ export default asyncwrap(img2webp);
  */
 async function img2webp(input: string, output: string) {
     let execout = await execpromise(
-        String(argsobj["cwebp-path"]) ?? getBin("cwebp"),
+        String(argsobj["cwebp-path"] ?? getBin("cwebp")),
         ["-o", output, "-v", "--", input]
     );
     return execout;
