@@ -76,7 +76,7 @@ yarn start
 
 https://github.com/masx200/long-image-split-square/blob/master/dist/IMAGECONFIG.d.ts
 
-`inputextentions`：输入的文件扩展名
+`inputextentions`：输入的文件扩展名,使用逗号分隔
 
 `input`：输入文件的目录
 
