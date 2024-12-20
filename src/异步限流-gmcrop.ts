@@ -1,6 +1,9 @@
 // import gm from "gm";
+import concat from "concat-stream";
+import stream from "node:stream";
 import 图片处理限流 from "./图片处理限流.js";
 import { gm_sub } from "./异步限流-gmresize.js";
+
 const { asyncwrap } = 图片处理限流;
 export default asyncwrap(gmcrop);
 /**
@@ -21,19 +24,49 @@ async function gmcrop(
     width: number,
     height: number,
     left: number,
-    top: number
-): Promise<void> {
-    await new Promise<void>((res, rej) => {
-        gm_sub(inputfile)
-            .crop(width, height, left, top)
-            .write(outfile, (err: Error | null) => {
-                if (err) {
-                    return rej(err);
-                } else {
-                    return res();
-                }
-            });
+    top: number,
+): Promise<{ stdout: string; stderr: string; cmd: string }> {
+    //处理png图片出错,改成cwebp
+    /* Error: Command failed: gm convert: bad adaptive filter value */
+    return await new Promise<{ stdout: string; stderr: string; cmd: string }>(
+        (res, rej) => {
+            gm_sub(inputfile)
+                .crop(width, height, left, top)
+                .write(
+                    outfile,
+                    async (
+                        err: Error | null,
+                        stdout: stream.Readable,
+                        stderr: stream.Readable,
+                        cmd: string,
+                    ) => {
+                        if (err) {
+                            return rej({
+                                err,
+                                cmd,
+                                stderr: await streamToString(stderr),
+                                stdout: await streamToString(stdout),
+                            });
+                        } else {
+                            return res({
+                                cmd,
+                                stderr: await streamToString(stderr),
+                                stdout: await streamToString(stdout),
+                            });
+                        }
+                    },
+                );
+        },
+    );
+}
+export function streamToString(stderr: stream.Readable): Promise<string> {
+    return new Promise((resolve, reject) => {
+        stderr.pipe(
+            concat((data) => {
+                resolve(data.toString("utf8"));
+            }),
+        );
+        stderr.on("error", reject);
     });
 }
-
 // import { wrapasynclimit } from "./wrap-async-function.js";

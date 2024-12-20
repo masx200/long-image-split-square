@@ -15,7 +15,15 @@ export default asyncwrap(img2webp);
  * @param output 输出WebP图像文件的路径，如果文件已存在，将会被覆盖
  * @returns 返回执行cwebp工具时的输出信息，包括转换过程中的详细情况和结果
  */
-async function img2webp(input: string, output: string) {
+async function img2webp(
+    input: string,
+    output: string
+): Promise<{
+    stdout: string;
+    stderr: string;
+    cmd: string;
+    args: string[];
+}> {
     let execout = await execpromise(
         String(argsobj["cwebp-path"] ?? getBin("cwebp")),
         ["-o", output, "-v", "--", input]

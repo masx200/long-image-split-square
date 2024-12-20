@@ -65,7 +65,9 @@ export default async function cropimagewrite(
             // ]);
 
             try {
-                await gmcrop(inputfile, tempname, width, height, left, top);
+                console.log(
+                    await gmcrop(inputfile, tempname, width, height, left, top)
+                );
                 await gmresize(tempname, outfile, width, height, maxpixels);
             } catch (e) {
                 console.error(e);
@@ -75,18 +77,22 @@ export default async function cropimagewrite(
                 await unlinkexists(tempname);
             }
         } else {
-            await gmcrop(inputfile, outfile, width, height, left, top);
+            console.log(
+                await gmcrop(inputfile, outfile, width, height, left, top)
+            );
         }
     } else {
         const tempname1 = gettempjpgfilepath();
         const tempname2 = gettempjpgfilepath();
 
         try {
-            await gmcrop(inputfile, tempname1, width, height, left, top);
+            console.log(
+                await gmcrop(inputfile, tempname1, width, height, left, top)
+            );
             if (shouldresize(width, height, maxpixels)) {
                 //const tempname2 = gettempjpgfilepath();
                 await gmresize(tempname1, tempname2, width, height, maxpixels);
-                await img2webp(tempname2, outfile);
+                console.log(await img2webp(tempname2, outfile));
                 await Promise.all([
                     unlinkexists(tempname1),
                     unlinkexists(tempname2),
@@ -95,7 +101,7 @@ export default async function cropimagewrite(
             } else {
                 /* const execout = */
 
-                await img2webp(tempname1, outfile);
+                console.log(await img2webp(tempname1, outfile));
                 // console.log(execout);
                 await unlinkexists(tempname1);
             }

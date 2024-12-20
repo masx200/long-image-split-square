@@ -18,14 +18,14 @@ export interface EXECERROR {
 export default function executeCommand(
     cmd: string,
     args: string[]
-): Promise<{ stdout: string; stderr: string }> {
+): Promise<{ stdout: string; stderr: string; cmd: string; args: string[] }> {
     return new Promise((res, rej) => {
         execFile(cmd, args, function (error, stdout, stderr) {
             if (error) {
-                return rej({ error, stdout, stderr });
+                return rej({ error, stdout, stderr, cmd, args });
             } else {
                 /*有的程序会往标准错误输出里写入*/
-                return res({ stdout, stderr });
+                return res({ stdout, stderr, cmd, args });
             }
         });
     });
