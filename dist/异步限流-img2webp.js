@@ -15,7 +15,7 @@ export async function cwebp_crop(input, output, width, height, left, top) {
     let execout = await execpromise(
         String(argsobj["cwebp-path"] ?? getBin("cwebp")),
         [
-            " -crop",
+            "-crop",
             left,
             top,
             width,

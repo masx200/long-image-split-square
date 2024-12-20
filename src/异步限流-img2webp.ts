@@ -17,7 +17,7 @@ export default asyncwrap(img2webp);
  */
 async function img2webp(
     input: string,
-    output: string
+    output: string,
 ): Promise<{
     stdout: string;
     stderr: string;
@@ -26,7 +26,7 @@ async function img2webp(
 }> {
     let execout = await execpromise(
         String(argsobj["cwebp-path"] ?? getBin("cwebp")),
-        ["-o", output, "-v", "--", input]
+        ["-o", output, "-v", "--", input],
     );
     return execout;
 }
@@ -36,7 +36,7 @@ export async function cwebp_crop(
     width: number,
     height: number,
     left: number,
-    top: number
+    top: number,
 ): Promise<{
     stdout: string;
     stderr: string;
@@ -46,7 +46,7 @@ export async function cwebp_crop(
     let execout = await execpromise(
         String(argsobj["cwebp-path"] ?? getBin("cwebp")),
         [
-            " -crop",
+            "-crop",
             left,
             top,
             width,
@@ -56,7 +56,7 @@ export async function cwebp_crop(
             "-v",
             "--",
             input,
-        ].map((a) => String(a))
+        ].map((a) => String(a)),
     );
     return execout;
 }
